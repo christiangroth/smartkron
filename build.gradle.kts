@@ -84,14 +84,11 @@ publishing {
 
     repositories {
         maven {
-            name = "artifacts.chrgroth.de"
-
-            val repoName = if (project.version.toString().endsWith("SNAPSHOT")) "maven-snapshots" else "maven-releases"
-            url = URI("https://artifacts.chrgroth.de/repository/$repoName/")
-
+            name = "GitHubPackages"
+            url = URI("https://maven.pkg.github.com/christiangroth/smartkron")
             credentials {
-                username = project.property("publication_username")?.toString()
-                password = project.property("publication_password")?.toString()
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
             }
         }
     }
