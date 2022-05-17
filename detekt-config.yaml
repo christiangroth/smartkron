@@ -1,0 +1,10 @@
+config:
+  warningsAsErrors: true
+
+style:
+  MaxLineLength:
+    maxLineLength: 160
+
+naming:
+  MatchingDeclarationName:
+    active: false
