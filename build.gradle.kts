@@ -9,8 +9,10 @@ plugins {
     jacoco
 
     id("io.gitlab.arturbosch.detekt").version("1.20.0")
-    id("net.researchgate.release") version "2.8.1"
+    id("pl.allegro.tech.build.axion-release") version "1.13.6"
 }
+
+project.version = scmVersion.version
 
 repositories {
     mavenCentral()
@@ -73,10 +75,6 @@ tasks {
 
     check {
         dependsOn(jacocoTestCoverageVerification)
-    }
-
-    afterReleaseBuild {
-        dependsOn(publish)
     }
 }
 
