@@ -4,7 +4,7 @@ on:
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+'
 jobs:
-  build:
+  Publish:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -17,12 +17,16 @@ jobs:
         distribution: 'adopt'
         java-version: '11'
         cache: 'gradle'
-    - name: Build with Gradle
+    - name: Assemble
       uses: gradle/gradle-build-action@v2
       with:
         arguments: assemble
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
     # the publishing section of your build.gradle
+    - name: Current Version
+      uses: gradle/gradle-build-action@v2
+      with:
+        arguments: currentVersion
     - name: Publish to GitHub Packages
       uses: gradle/gradle-build-action@v2
       with:
