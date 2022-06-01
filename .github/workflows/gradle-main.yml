@@ -15,7 +15,7 @@ permissions:
   contents: write
 
 jobs:
-  build:
+  CD:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -24,11 +24,15 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-    - name: Build with Gradle
+    - name: Build
       uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
       with:
         arguments: build
-    - name: Build with Gradle
+    - name: Current Version
+      uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
+      with:
+        arguments: currentVersion
+    - name: Release
       uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
       with:
         arguments: release
