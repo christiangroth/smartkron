@@ -32,6 +32,10 @@ dependencies {
 
 group = "de.chrgroth.smartkron"
 
+scmVersion {
+    tag.prefix = "version/"
+}
+
 java {
     withSourcesJar()
     withJavadocJar()
