@@ -5,6 +5,8 @@ on:
 jobs:
   CD:
     runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
     permissions:
       contents: write
       packages: write
