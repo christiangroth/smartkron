@@ -27,14 +27,18 @@ jobs:
       uses: gradle/gradle-build-action@v2
       with:
         arguments: currentVersion
-    - name: Release
+    - name: Create Release
       uses: gradle/gradle-build-action@v2
       with:
-        arguments: release
+        arguments: createRelease
     - name: Publish to GitHub Packages
       uses: gradle/gradle-build-action@v2
       with:
         arguments: publish
       env:
-        USERNAME: ${{ github.actor }}
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_ACTOR: ${{ github.actor }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Push Release Tag
+      uses: gradle/gradle-build-action@v2
+      with:
+        arguments: pushRelease
