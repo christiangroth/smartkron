@@ -81,6 +81,11 @@ object SmartkronRegistry {
     }
 }
 
+// TODO set name explicit for all smartkron coroutines?
+// TODO create explicit scope for all smartkron coroutines?
+// TODO specify dispatcher explicitly?
+
+
 private class SmartkronCoroutineWrapper(
     private val scope: CoroutineScope,
     registration: SmartkronRegistration,
@@ -106,6 +111,7 @@ private class SmartkronCoroutineWrapper(
     val active: Boolean
         get() = job?.isActive ?: false
 
+    // TODO simplify
     fun activate() {
         if (active) {
             return
@@ -146,7 +152,7 @@ private class SmartkronCoroutineWrapper(
                         delay(plannedDelay)
                     }
                 }
-            } while (plannedNext != null)
+            } while (active && plannedNext != null)
         }
     }
 
